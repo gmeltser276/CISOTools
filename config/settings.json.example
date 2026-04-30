@@ -1,0 +1,67 @@
+{
+  "permissions": {
+    "deny": [
+      "Bash(rm -rf *)",
+      "Bash(rm -fr *)",
+      "Bash(sudo *)",
+      "Bash(mkfs *)",
+      "Bash(dd *)",
+      "Bash(curl *|bash*)",
+      "Bash(wget *|bash*)",
+      "Bash(git push --force*)",
+      "Bash(git reset --hard*)",
+      "Edit(~/.bashrc)",
+      "Edit(~/.zshrc)",
+      "Edit(~/.ssh/**)",
+      "Read(~/.ssh/**)",
+      "Read(~/.gnupg/**)",
+      "Read(~/.aws/**)",
+      "Read(~/.azure/**)",
+      "Read(~/.config/gh/**)",
+      "Read(~/.git-credentials)",
+      "Read(~/.kube/**)",
+      "Read(~/.npmrc)",
+      "Read(~/Library/Keychains/**)"
+    ]
+  },
+  "model": "opus",
+  "env": {
+    "ENABLE_TOOL_SEARCH": "true",
+    "DISABLE_TELEMETRY": "1"
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "CMD=$(jq -r \".tool_input.command\"); if echo \"$CMD\" | grep -qE \"rm[[:space:]]+-[^[:space:]]*r[^[:space:]]*f\"; then echo \"BLOCKED: Use trash instead of rm -rf\" >&2; exit 2; fi"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '\"[\" + (now | todate) + \"] \" + .tool_input.command' >> ~/.claude/bash-commands.log"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "OUTPUT ONLY VALID JSON. Evaluate whether Claude completed an implementation task. For Q&A or explanations return {\"ok\": true}. For implementation tasks: reject if Claude rationalizes incomplete work (claims pre-existing, out of scope, too many issues, deferring to a follow-up that was not requested). If rationalizing, respond {\"ok\": false, \"reason\": \"You are rationalizing incomplete work. Go back and finish.\"}. Otherwise {\"ok\": true}."
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "mcpServers": {
+    "context7": {
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp"]
+    },
+    "qmd": {
+      "command": "/path/to/qmd",
+      "args": ["mcp"]
+    },
+    "ms365": {
+      "command": "npx",
+      "args": ["-y", "@softeria/ms-365-mcp-server", "--org-mode"],
+      "env": {
+        "MS365_MCP_CLIENT_ID": "<your-app-registration>",
+        "MS365_MCP_TENANT_ID": "<your-tenant>",
+        "MS365_MCP_ORG_MODE": "true"
+      }
+    }
+  }
+}

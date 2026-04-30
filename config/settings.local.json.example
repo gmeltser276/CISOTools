@@ -1,0 +1,26 @@
+{
+  "hooks": {
+    "PreToolUse": [{
+      "matcher": "Edit|Write",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "FILE=$(jq -r '.tool_input.file_path // empty'); VAULT='/path/to/your/vault'; if [ -n \"$FILE\" ] && ! echo \"$FILE\" | grep -qE \"^$VAULT\"; then echo 'BLOCKED: Edit outside vault boundary' >&2; exit 2; fi"
+        },
+        {
+          "type": "command",
+          "command": "/path/to/your/vault/.claude/scripts/vault-write-guard.sh pre"
+        }
+      ]
+    }],
+    "PostToolUse": [{
+      "matcher": "Edit|Write",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "/path/to/your/vault/.claude/scripts/vault-write-guard.sh post"
+        }
+      ]
+    }]
+  }
+}
