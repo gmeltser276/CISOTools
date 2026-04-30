@@ -13,7 +13,10 @@ The user will provide search terms to find relevant past prompts.
 Use ripgrep to search all conversation JSONL files:
 
 ```bash
-rg -N '"type":"user"' ~/.claude/projects/-Users-genermeltser-Projects-StrideBot/*.jsonl --no-filename | \
+# Find your project's conversation files (adjust the path to your project):
+# ls ~/.claude/projects/
+# Then pick the relevant project directory.
+rg -N '"type":"user"' ~/.claude/projects/<YOUR_PROJECT_DIR>/*.jsonl --no-filename | \
   jq -r 'select(.message.content | type == "string") |
          select(.message.content | ascii_downcase | contains("SEARCH_TERM")) |
          .message.content' | \

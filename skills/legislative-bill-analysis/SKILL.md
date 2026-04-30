@@ -1,18 +1,18 @@
 ---
 name: legislative-bill-analysis
-description: Use when analyzing legislative bills, proposed laws, executive orders, or regulatory frameworks that may affect State of Connecticut operations, cybersecurity, or technology policy. Trigger on any request involving bill text, bill numbers, or legislative impact assessment.
+description: Use when analyzing legislative bills, proposed laws, executive orders, or regulatory frameworks that may affect state government operations, cybersecurity, or technology policy. Trigger on any request involving bill text, bill numbers, or legislative impact assessment.
 ---
 
 # Legislative Bill Analysis
 
-Structured analysis of legislation through dual lenses: general policy intent and State of CT CISO operational impact. Produces concise, decision-ready output.
+Structured analysis of legislation through dual lenses: general policy intent and CISO operational impact. Produces concise, decision-ready output.
 
 ## Workflow
 
 ### 1. Source the Bill Text
 
 Obtain the full bill text before analysis. Prefer official sources:
-- CT General Assembly: `cga.ct.gov` (PDF or HTML). If SSL fails, use `curl -skL` to fetch PDFs.
+- Your state legislature website (e.g. `cga.ct.gov` for Connecticut). If SSL fails, use `curl -skL` to fetch PDFs.
 - Fallbacks: LegiScan, BillTrack50, TrackBill
 
 Never analyze from summaries alone. Third-party AI summaries miss amendments to existing statutes, which often contain the most consequential changes.
@@ -21,7 +21,7 @@ Never analyze from summaries alone. Third-party AI summaries miss amendments to 
 
 Launch a background agent to search for comparable legislation while you analyze. Agent instructions:
 - Search for bills with similar subject matter in current and prior 2 legislative sessions
-- Focus on passed laws (not just introduced) in comparator jurisdictions: NY, CA, CO, IL, and EU
+- Focus on passed laws (not just introduced) in comparator jurisdictions (e.g. neighboring states, CA, CO, IL, and EU)
 - Note meaningful differences in scope, enforcement, and compliance requirements
 - Report in under 200 words
 
@@ -64,7 +64,7 @@ Analyze across these domains. Skip any that genuinely don't apply. 1-2 sentences
 | Security tooling | EDR, SIEM, SOAR, insider threat, DLP, behavioral analytics, phishing simulation |
 | Procurement | Approval gates, authorization requirements, vendor contract obligations |
 | Workforce/HR intersection | Where security monitoring crosses into employment decisions |
-| State agency obligations | What applies to BITS specifically vs. private sector only |
+| State agency obligations | What applies to your agency specifically vs. private sector only |
 | Collective bargaining | Impact on deploying tools for unionized state employees |
 | Data governance | Retention, disclosure, audit trail, bias audit recordkeeping |
 | Public disclosure risk | Whether compliance creates information adversaries can exploit |
@@ -102,4 +102,4 @@ Offer testimony support as a follow-up:
 ## Attribution
 
 Derived from danielmiessler/fabric `analyze_bill` pattern (MIT license).
-Substantially rewritten for CT CISO operational analysis.
+Substantially rewritten for state CISO operational analysis.

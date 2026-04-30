@@ -13,7 +13,7 @@ attendees:
 
 # Meeting — <% tp.file.title %>
 
-> Meeting note scoped to a single date. Canonical vendor and product facts live in the vendor hub note ([[]]). Contact profiles live in `00. StateOfCT/People/`.
+> Meeting note scoped to a single date. Canonical vendor and product facts live in the vendor hub note ([[]]). Contact profiles live in `<YourOrg>/People/`.
 
 **Date:**
 **Format:** (in-person / virtual / phone)

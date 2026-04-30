@@ -33,8 +33,9 @@ module.exports = async function (tp, promptAudio = false) {
   );
   const delFlag = (delChoice === "yes") ? "-k" : "";
 
-  // --- Absolute helper path (no $HOME resolution) ---
-  const helper = "/Users/genermeltser/bin/obsidian_fabric_minutes.sh";
+  // --- Helper path: CISO_MINUTES_HELPER env var, or $HOME/bin/ fallback ---
+  const helper = process.env.CISO_MINUTES_HELPER
+    || require("os").homedir() + "/bin/obsidian_fabric_minutes.sh";
 
   // --- Build args and execute ---
   const args = [];

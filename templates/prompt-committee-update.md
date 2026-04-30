@@ -20,18 +20,18 @@ MEETING_DATE: YYYY-MM-DD
 CADENCE: Last Monday of every month
 AUDIENCE: State agency liaisons + CSMs, utilities/critical infrastructure, CTIC, DEHMS, CEN, private industry, casinos, tribal nations, towns, municipalities
 
-You are preparing a CISO update for Gene Meltser, CISO for State of Connecticut, for the Monthly Statewide Cybersecurity Committee on [MEETING_DATE].
+You are preparing a CISO update for [YOUR_NAME], [YOUR_TITLE] for [YOUR_ORGANIZATION], for the Monthly Statewide Cybersecurity Committee on [MEETING_DATE].
 
 Step 1 — Read the scaffold and last month's update
-- 00. StateOfCT/Presentations/Monthly CyberSecurity Committee/Process.md
-- 00. StateOfCT/Presentations/Monthly CyberSecurity Committee/ [most recent prior month file]
+- <YourOrg>/Presentations/Monthly CyberSecurity Committee/Process.md
+- <YourOrg>/Presentations/Monthly CyberSecurity Committee/ [most recent prior month file]
 Do NOT repeat topics from last month unless there are material new developments after the 1st of this month.
 
 Step 2 — Read current vault state
-- 00. StateOfCT/Wins.md
-- 00. StateOfCT/1-1s/Mark Raymond.md
-- 00. StateOfCT/Reference/2026 Current Priorities.md
-- Relevant notes from 00. StateOfCT/10. Projects/
+- <YourOrg>/Wins.md
+- <YourOrg>/1-1s/<Your-Manager>.md
+- <YourOrg>/Reference/2026 Current Priorities.md
+- Relevant notes from <YourOrg>/10. Projects/
 - Content from my Home.md file
 - Obsidian Vault files updated in the last month
 
@@ -54,7 +54,7 @@ Step 5 - Validation
 Exclusions — do not surface:
 - Topics covered last month unless material new developments
 - Vendor commercial details, in-flight RFPs, in-flight personnel decisions
-- Anything tagged #confidential or in 00. StateOfCT/98. Archive/
+- Anything tagged #confidential or in <YourOrg>/98. Archive/
 - Check for relevance: is it relevant to attendees in this meeting? If not, remove.
 
 Step 6 — Propose exactly 5 lede candidates
@@ -64,7 +64,7 @@ For each:
 - CT angle: what CT can say or do about it
 - Audience hook: which stakeholder group it most directly concerns
 
-STOP after presenting the 5 candidates. Wait for Gene to choose before drafting anything.
+STOP after presenting the 5 candidates. Wait for the user to choose before drafting anything.
 ```
 
 ---
@@ -94,7 +94,7 @@ After each section heading, add a blockquote:
 Not a script. A verbal anchor.
 
 Save output to:
-00. StateOfCT/Presentations/Monthly CyberSecurity Committee/YYYY-MM Month.md
+<YourOrg>/Presentations/<Committee-Name>/YYYY-MM Month.md
 
 Frontmatter: type: presentation, tags: [committee, ciso-update, cybersecurity], created: [today]
 

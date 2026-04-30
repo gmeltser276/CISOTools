@@ -16,7 +16,7 @@ WHISPERX_MODEL="${WHISPERX_MODEL:-small}"
 WHISPERX_MIN_SPEAKERS="${WHISPERX_MIN_SPEAKERS:-}"
 WHISPERX_MAX_SPEAKERS="${WHISPERX_MAX_SPEAKERS:-}"
                                                                                                                                
-FABRIC_BIN="${FABRIC_BIN:-/Users/genermeltser/go/bin/fabric}"                                                                  
+FABRIC_BIN="${FABRIC_BIN:-$HOME/go/bin/fabric}"                                                                  
 FABRIC_PATTERN="${FABRIC_PATTERN:-ciso_minutes}"                                                                               
 PATTERN_DIR="${PATTERN_DIR:-$HOME/.config/fabric/patterns}"
 

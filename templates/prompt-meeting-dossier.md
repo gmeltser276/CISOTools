@@ -4,7 +4,7 @@ description: Produce a comprehensive meeting dossier for a scheduled meeting wit
 
 # Meeting Dossier Prompt
 
-Use this prompt when asked to prep for a meeting. It produces a scoped meeting note under `00. StateOfCT/Meetings/<Organization>/<YYYY-MM-DD> <attendees>.md`, creates or reuses People profiles under `00. StateOfCT/People/<Organization>/`, and a vendor hub note at `00. StateOfCT/Vendors/<Organization>.md`. Canonical facts are never duplicated across the vault.
+Use this prompt when asked to prep for a meeting. It produces a scoped meeting note under `<YourOrg>/Meetings/<Organization>/<YYYY-MM-DD> <attendees>.md`, creates or reuses People profiles under `<YourOrg>/People/<Organization>/`, and a vendor hub note at `<YourOrg>/Vendors/<Organization>.md`. Canonical facts are never duplicated across the vault.
 
 ## Required Inputs
 
@@ -24,13 +24,13 @@ If multiple inputs are missing, batch them into a single clarifying question. Do
 1. **Vault — existing relationship context**
    - `mcp__qmd__query` with lex+vec searches for the organization name, any known products, any prior meeting terms
    - `obsidian search query="<Organization>"` for exact matches
-   - Check `00. StateOfCT/Vendors/<Organization>.md` for a vendor hub note. If missing, flag to create it
-   - Check `00. StateOfCT/People/<Organization>/<Name>.md` for each attendee. If missing, flag to create it
-   - Read current priorities: `00. StateOfCT/Reference/2026 Current Priorities.md`
+   - Check `<YourOrg>/Vendors/<Organization>.md` for a vendor hub note. If missing, flag to create it
+   - Check `<YourOrg>/People/<Organization>/<Name>.md` for each attendee. If missing, flag to create it
+   - Read current priorities: `<YourOrg>/Reference/2026 Current Priorities.md`
    - Search for other priorities, ongoing projects, initiatives, efforts or implemenrations
 
 2. **Vault — prior meetings with same org/people**
-   - List `00. StateOfCT/Meetings/<Organization>/` if it exists
+   - List `<YourOrg>/Meetings/<Organization>/` if it exists
    - Scan recent notes for action items carried forward
 
 3. **Web — external research (background Agent)**
@@ -43,7 +43,7 @@ If multiple inputs are missing, batch them into a single clarifying question. Do
 
 ## Outputs (in this order)
 
-### 1. People profile notes — `00. StateOfCT/People/<Organization>/<Name>.md`
+### 1. People profile notes — `<YourOrg>/People/<Organization>/<Name>.md`
 
 Create one per attendee if not already present. Structure:
 
@@ -77,13 +77,13 @@ What they say publicly. Themes they consistently push. Named talks/articles with
 Tactical guidance for the user: what register to use, what lands, what to avoid.
 
 ## Meetings
-Dataview query listing all meetings where this person appears in attendees frontmatter, scoped to `FROM "00. StateOfCT/Meetings"`.
+Dataview query listing all meetings where this person appears in attendees frontmatter, scoped to `FROM "<YourOrg>/Meetings"`.
 
 ## Related
 Links to vendor hub, contract notes, relevant project notes.
 ```
 
-### 2. Vendor hub note — `00. StateOfCT/Vendors/<Organization>.md`
+### 2. Vendor hub note — `<YourOrg>/Vendors/<Organization>.md`
 
 Create if missing; update if present. Single entry point for the relationship. Must not duplicate contract line items (those live in the contract reference note). Must include:
 
@@ -92,12 +92,12 @@ Create if missing; update if present. Single entry point for the relationship. M
 - Products Under Evaluation or Available
 - Contacts: organization contacts (link to People notes via `[[<Name>]]`), CT internal owners, integration partners
 - Contract Snapshot (one-line, link to contract reference note)
-- Adjacent CT-<Organization> footprint (engagements outside DAS BITS InfoSec lane, if any)
+- Adjacent <YourOrg>-<Organization> footprint (engagements outside your team's lane, if any)
 - Active Discussion Threads (open asks across all meetings)
-- Dataview query listing all meetings `FROM "00. StateOfCT/Meetings/<Organization>"`
+- Dataview query listing all meetings `FROM "<YourOrg>/Meetings/<Organization>"`
 - Related notes
 
-### 3. Meeting note — `00. StateOfCT/Meetings/<Organization>/<YYYY-MM-DD> <attendee-lastnames>.md`
+### 3. Meeting note — `<YourOrg>/Meetings/<Organization>/<YYYY-MM-DD> <attendee-lastnames>.md`
 
 Scoped to this single meeting. Must begin with a callout linking to the vendor hub and canonical contract note, stating facts live there. Frontmatter must include:
 

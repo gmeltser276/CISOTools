@@ -144,7 +144,7 @@ Source: simplified from [Trail of Bits Claude Code config](https://github.com/tr
 - Warns on: single-line collapse, truncation (>80% line/byte loss), header loss, near-empty files
 - Never modifies files
 
-**Setup:** Set the `VAULT_WRITE_GUARD_DIR` environment variable to your vault path, or edit the default in the script.
+**Setup:** Set the `VAULT_WRITE_GUARD_DIR` environment variable to your vault path. The script will exit with an error if this is not set.
 
 ### Agent instructions for vault operations
 
@@ -445,10 +445,10 @@ cp templates/tpl-ciso-minutes.md <your-vault>/Templates/
 cp templates/apply-speakers.md <your-vault>/Templates/
 ```
 
-Edit `run_ciso_minutes.js` line 37 -- change the `helper` path:
+The script reads the `CISO_MINUTES_HELPER` environment variable for the shell script path. If unset, it defaults to `$HOME/bin/obsidian_fabric_minutes.sh`. To override:
 
-```javascript
-const helper = "/path/to/your/bin/obsidian_fabric_minutes.sh";
+```bash
+export CISO_MINUTES_HELPER="/your/custom/path/obsidian_fabric_minutes.sh"
 ```
 
 **7. Configure Templater**
@@ -479,7 +479,7 @@ In Obsidian Settings > Templater:
 | ID | Name |
 |----|------|
 | SPEAKER_00 | Jane Smith |
-| SPEAKER_01 | Mark Raymond |
+| SPEAKER_01 | Alex Chen |
 | SPEAKER_02 | SPEAKER_02 |
 ```
 
@@ -509,6 +509,8 @@ All configurable via shell environment. Defaults work for the standard install.
 
 | Variable | Default | Purpose |
 |---|---|---|
+| `CISO_MINUTES_HELPER` | `$HOME/bin/obsidian_fabric_minutes.sh` | Path to the shell script (used by `run_ciso_minutes.js`) |
+| `VAULT_WRITE_GUARD_DIR` | (required) | Vault path for the write-guard hook |
 | `WHISPERX_VENV` | `$HOME/tools/whisperx-env` | WhisperX Python venv path |
 | `WHISPERX_BIN` | `$WHISPERX_VENV/bin/whisperx` | WhisperX binary |
 | `HF_TOKEN_FILE` | `$HOME/.config/whisperx/token` | HuggingFace token for pyannote |
@@ -600,6 +602,25 @@ wsl --install -d Ubuntu
 | **iCloud sync** | Not available on Windows. | Use OneDrive, [Syncthing](https://syncthing.net/), or [Obsidian Sync](https://obsidian.md/sync) instead. Point the vault at a synced folder that both Obsidian and WSL can reach. |
 
 **Without WSL:** The alternative is rewriting every shell script and hook in PowerShell. The vault, skills, and templates work natively on Windows -- only the bash tooling layer needs porting. That is doable but more work than installing WSL for no functional gain.
+
+## Personalization checklist
+
+After cloning, search-and-replace these placeholders to match your environment:
+
+| Placeholder / Setting | Where | What to do |
+|---|---|---|
+| `[YOUR_NAME]` | `templates/prompt-committee-update.md` | Your name |
+| `[YOUR_TITLE]` | `templates/prompt-committee-update.md` | Your title (e.g. "CISO") |
+| `[YOUR_ORGANIZATION]` | `templates/prompt-committee-update.md` | Your organization |
+| `<YOUR_PROJECT_DIR>` | `skills/what-did-i-say/TASK.md` | Your Claude Code project directory (run `ls ~/.claude/projects/` to find it) |
+| `VAULT_WRITE_GUARD_DIR` | Environment or shell profile | Absolute path to your Obsidian vault (required for the write-guard hook) |
+| `CISO_MINUTES_HELPER` | Environment or shell profile | Path to `obsidian_fabric_minutes.sh` if not at `$HOME/bin/` |
+| State legislature URL | `skills/legislative-bill-analysis/SKILL.md` | Replace the example `cga.ct.gov` with your state's legislature site |
+| Comparator jurisdictions | `skills/legislative-bill-analysis/SKILL.md` | Replace example neighboring states with yours |
+| `<YourOrg>` vault paths | `templates/prompt-committee-update.md`, `templates/prompt-meeting-dossier.md`, `templates/tpl-meeting-note.md` | Replace with your top-level vault folder name |
+| `OLLAMA_MODEL` | Environment (optional) | Override if you use a different model than `glm-5:cloud` |
+
+Scripts use `$HOME`-relative defaults where possible, so if you follow the standard install paths (`~/bin/`, `~/tools/whisperx-env/`, `~/go/bin/fabric`), most settings work without changes.
 
 ## Provenance
 

@@ -5,3 +5,12 @@ node_modules/
 bun.lock
 __pycache__/
 *.pyc
+
+# Audio recordings (meeting minutes pipeline)
+*.m4a
+*.wav
+*.mp3
+
+# Tokens and credentials
+token
+*.token

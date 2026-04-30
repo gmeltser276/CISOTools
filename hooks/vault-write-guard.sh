@@ -2,7 +2,7 @@
 set -euo pipefail
 
 PHASE="${1:?Usage: vault-write-guard.sh <pre|post>}"
-VAULT="${VAULT_WRITE_GUARD_DIR:-/Users/genermeltser/Library/Mobile Documents/iCloud~md~obsidian/Documents/Work}"
+VAULT="${VAULT_WRITE_GUARD_DIR:?Set VAULT_WRITE_GUARD_DIR to your Obsidian vault path}"
 GUARD_DIR="${TMPDIR:-/tmp}/claude-vault-guard"
 
 INPUT=$(cat)
