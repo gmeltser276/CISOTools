@@ -40,6 +40,7 @@ CISOTools/
     reflection/                       Config self-audit from CLAUDE.md + settings
     function-review/                  Code quality checklist
     what-did-i-say/                   Search past conversation prompts
+    talk-panel-review/                 Expert panel critique for talk scripts
   scripts/                          Pipeline scripts
     obsidian_fabric_minutes.sh        WhisperX + Fabric diarized minutes pipeline
     run_ciso_minutes.js               Obsidian Templater glue for minutes pipeline
@@ -226,6 +227,22 @@ Searches your conversation history for past prompts. Clusters similar phrasings 
 ```
 /what-did-i-say create skill
 ```
+
+### talk-panel-review
+
+Simulated expert panel review of talk scripts and presentation drafts. Assembles 7-9 panelists (six fixed roles + adaptive specialists) who debate story arc, content credibility, audience fit, and delivery across three rounds -- then produce a ranked improvement list and a "do not change" protection list. Pulls recent industry context via `last30days` to evaluate whether the talk's framing is current. Works with any markdown talk script.
+
+How to use:
+```
+Review my talk at Presentations/RSA 2026 Keynote.md
+```
+
+Or invoke directly:
+```
+/talk-panel-review
+```
+
+Recommended plugin: [last30days](https://github.com/mvanhorn/last30days-skill) for current industry context.
 
 ## Workflow templates
 
