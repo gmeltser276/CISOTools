@@ -95,7 +95,7 @@ The AI reads these on every workflow to set context.
 
 ### GTD layer
 
-Five tags cover every action state (alongside project/person tags). CLAUDE.md knows about these tags and you can ask your Agent questions like "what's due next week?" etc:
+GTD stands for "Getting Things Done" and is a fundamental element of how I strucuture my work. You should read the concise overview here: https://hamberg.no/gtd/ Five tags cover every action state (alongside project/person tags). CLAUDE.md knows about these tags and you can ask your Agent questions like "what's due next week?" etc:
 
 | Tag | Meaning |
 |---|---|
