@@ -158,8 +158,7 @@ See `config/mcp.json.example` for the three servers used:
 | Server | Purpose | Install |
 |---|---|---|
 | `context7` | Current SDK/library documentation | `npx -y @upstash/context7-mcp` |
-| `qmd` | Semantic search over your vault (BM25 + vector + LLM rerank). Use for concept/intent searches; use `obsidian search` for exact terms, tags, properties. See `CLAUDE.md` for query syntax and routing guidance. | `bun install -g @tobilu/qmd` ([github](https://github.com/tobi/qmd)) |
-| `ms365` | Microsoft 365 integration (email, SharePoint, Teams) | `npx -y @softeria/ms-365-mcp-server --org-mode` (requires tenant app registration for your org, and some setup by your AD admins) |
+| `qmd` | Semantic search over your vault (BM25 + vector + LLM rerank). Use for concept/intent searches; use `obsidian search` for exact terms, tags, properties. See `CLAUDE.md` for query syntax and routing guidance. | `bun install -g @tobilu/qmd` ([github](https://github.com/tobi/qmd)). Or, you can just run it directly without installing: `bunx @tobilu/qmd`|
 
 ### Plugins
 
@@ -560,7 +559,7 @@ Weekly cycle (10-15 minutes):
 1. **Surface inconsistencies.** Ask the agent to audit `Projects/`, `Reference/`, and `Vendors/` for mismatched status frontmatter, stale dates, broken wikilinks, and duplicated facts.
 2. **Review and fix.** Walk through findings. Agent applies changes one note at a time.
 3. **Check vault health.** Run `obsidian unresolved counts`, `obsidian orphans`, `obsidian deadends`.
-4. **Re-index semantic search.** Just run `qmd update && qmd embed -f && qmd status` and qmd will re-index and re-vectorize all your markdown files in your vault. 
+4. **Re-index semantic search.** Just run `bunx @tobilu/qmd update && bunx @tobilu/qmd embed -f && qbunx @tobilu/qmd status` and qmd will re-index and re-vectorize all your markdown files in your vault. 
 5. **Spot-check.** Run semantic queries on topics you just updated.
 
 ## Anti-patterns
